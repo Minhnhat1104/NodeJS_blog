@@ -1,11 +1,16 @@
+const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const { engine } = require('express-handlebars');
-const path = require('path');
+
+const route = require('./routes');
+const db = require('./config/db');
+
+//Connect to Db
+db.connect();
+
 const app = express();
 const port = 3000;
-const route = require('./routes');
-
 //config route static file
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -32,11 +37,11 @@ app.engine(
 );
 
 app.set('view engine', '.hbs');
-app.set('views', path.join(__dirname, 'resources/views'));
+app.set('views', path.join(__dirname, 'resources', 'views'));
 
 // actions --> dispatcher --> funciton handler
 route(app);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`App listening on port ${port}`);
 });
