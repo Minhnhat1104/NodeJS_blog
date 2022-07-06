@@ -1,14 +1,14 @@
-{{#each course}}
+{{#with course}}
 <div class="mt-4">
     <div class="row">
         <div class="col-lg-3">
             <button>học ngay</button>
         </div>
         <div class="col-lg-9">
-            <h2>{{this.name}}</h2>
-            <iframe src="{{this.videoid}}" frameborder="0"></iframe>
-            <p>{{this.description}}</p>
+            <h2>{{name}}</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{videoid}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p>{{description}}</p>
         </div>
     </div>
 </div>
-{{/each}}
+{{/with}}

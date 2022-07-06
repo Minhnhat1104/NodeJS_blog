@@ -14,8 +14,6 @@ class SiteController {
 
     Course.find({})
       .then((courses) => {
-        // res.json(courses);
-        // console.log(courses);
         res.render('search', { courses: multipleMongooseToObject(courses) });
       })
       .catch(next);
