@@ -36,7 +36,9 @@ app.engine(
   }),
 );
 
+// register the template engine
 app.set('view engine', '.hbs');
+// specify the views directory
 app.set('views', path.join(__dirname, 'resources', 'views'));
 
 // actions --> dispatcher --> funciton handler
