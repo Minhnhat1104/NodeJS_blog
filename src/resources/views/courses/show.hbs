@@ -1,0 +1,14 @@
+{{#each course}}
+<div class="mt-4">
+    <div class="row">
+        <div class="col-lg-3">
+            <button>học ngay</button>
+        </div>
+        <div class="col-lg-9">
+            <h2>{{this.name}}</h2>
+            <iframe src="{{this.videoid}}" frameborder="0"></iframe>
+            <p>{{this.description}}</p>
+        </div>
+    </div>
+</div>
+{{/each}}

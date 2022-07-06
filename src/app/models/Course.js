@@ -13,4 +13,4 @@ const Course = new Schema({
 
 // mogo tự động convert thành dạng snaking
 module.exports = mongoose.model('Course', Course);
-// trả về một list gồm các object là các docs cảu bảng
+// trả về một list gồm các object là các docs của bảng
