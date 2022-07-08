@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const { engine } = require('express-handlebars');
+const methodOverride = require('method-override');
 
 const route = require('./routes');
 const db = require('./config/db');
@@ -12,8 +13,10 @@ db.connect();
 const app = express();
 const port = 3000;
 //config route static file
-
 app.use(express.static(path.join(__dirname, 'public')));
+
+//config route method override
+app.use(methodOverride('_method'));
 
 // cho việc submit qua html
 app.use(
@@ -33,6 +36,9 @@ app.engine(
   '.hbs',
   engine({
     extname: '.hbs',
+    helpers: {
+      sum: (a, b) => a + b,
+    },
   }),
 );
 

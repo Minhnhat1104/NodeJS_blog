@@ -1,16 +1,24 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
+  <div class="container">
     <a class="navbar-brand" href="/">F8 education</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/courses/create">Đăng kí khóa học</a>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img class="use-avatar" src="https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.6435-1/132274680_2904575009866253_6343458098873906183_n.jpg?stp=cp0_dst-jpg_p60x60&_nc_cat=111&ccb=1-7&_nc_sid=7206a8&_nc_ohc=fxoZldErfaYAX8tq4S5&_nc_oc=AQkx9dOUX7yF82nkfdCwso-kUHLEQpo10KDBz_jGkvaJ6iy-RoKLV9vS2fHUKC3bAZQ&_nc_ht=scontent.fsgn2-2.fna&oh=00_AT9MEOiqtI7EUe0vUYUBYUbKr4P6zDi78ncsO6IB4XPCig&oe=62ECC39E" alt="Minh Nhật">
+            Minh Nhật
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/courses/create">Đăng khóa học</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/me/stored/courses">Khóa học của tôi</a></li>
+            <li><a class="dropdown-item" href="/me/stored/courses">Bài viết của tôi</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+          </ul>
         </li>
       </ul>
     </div>
