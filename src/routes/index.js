@@ -1,6 +1,6 @@
 const newsRoute = require('./news');
 const siteRoute = require('./site');
-const courseRoute = require('./course');
+const courseRoute = require('./courses');
 const meRoute = require('./me');
 
 function route(app) {
