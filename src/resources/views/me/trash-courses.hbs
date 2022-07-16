@@ -1,10 +1,28 @@
-<div class="container">
-  <a href="/me/stored/courses">Danh sách khóa học</a>
+<form class="container mt-4" method="POST" action = "/courses/handle-form-actions">
+  <a href="/me/stored/courses" class = "mb-4">Danh sách khóa học</a>
   <h3> Khóa học đã xóa</h3>
+
+  <div class = "d-flex align-items-center">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="check-box-all">
+      <label class="form-check-label" for="check-box-all">
+        Chọn tất cả
+      </label>
+    </div>
+
+    <select name = "action" class="form-select checkbox-select-all-options" aria-label="Default select example" required>
+      <option value="" selected>-- Hành động --</option>
+      <option value="force-delete">Xóa tất cả</option>
+      <option value="restore">Khôi phục tất cả</option>
+    </select>
+
+    <button type="submit" class="btn btn-primary btn-sm disabled submit-all-checked-btn">Thực hiện</button>
+  </div>
 
   <table class="table mt-4">
     <thead>
       <tr>
+        <th scope="col"></th>
         <th scope="col">id</th>
         <th scope="col">name</th>
         <th scope="col">description</th>
@@ -14,6 +32,7 @@
     <tbody>
       {{#each courses}}
       <tr>
+        <th scope="row"><input class="form-check-input" type="checkbox" name="courseIds[]" value={{this._id}}></th>
         <th scope="row">{{sum @index 1}}</th>
         <td>{{this.name}}</td>
         <td>{{this.description}}</td>
@@ -49,18 +68,18 @@
       {{/each}}
     </tbody>
   </table>
-</div>
+</form>
 
 <form id = "hidden-form" method="POST" ></form>
 <form id = "restore-form" method="POST" ></form>
 
 <script>
-  const $ = document.querySelector.bind(document)
-  const $$ = document.querySelectorAll.bind(document)
+  document.addEventListener('DOMContentLoaded', function() {
 
   function handleDelete() {
     const deleteCourseModal = document.getElementById('delete-course')
-    deleteCourseModal.addEventListener('show.bs.modal', event => {
+    if (deleteCourseModal) {
+      deleteCourseModal.addEventListener('show.bs.modal', event => {
       const deleteButton = event.relatedTarget
       const modal = $('#delete-course')
       const hiddenForm = $('#hidden-form')
@@ -69,32 +88,68 @@
       const courseID = deleteButton.getAttribute('data-id')
 
       const deleteCourseBtn = $('#btn-delete-course')
-      deleteCourseBtn.onclick = () => {
+      deleteCourseBtn.click(function() {
         hiddenForm.action = `/courses/${courseID}/force?_method=DELETE`
         hiddenForm.submit()
-      }
+      })
     })
+    }
   }
 
   function handleRestore() {
-    const restoreBtns = $$('.restore-btn')
+    const restoreBtns = $('.restore-btn')
     const restoreForm = $('#restore-form')
-    Array.from(restoreBtns).forEach(btn => {
-      btn.onclick = (e) => {
-        e.preventDefault()
-        const id = e.target.getAttribute('data-id')
+    restoreBtns.click(function() {
+        event.preventDefault()
+        const id = $(this).attr('data-id')
         restoreForm.action = `/courses/${id}/restore?_method=PATCH`
         restoreForm.submit()
-      }
+      })
+  }
+
+  function handleCheckBox() {
+    const courseItemCheckbox = $('input[name = "courseIds[]"]')
+    const checkBoxAll = $('#check-box-all')
+    const submitAllCheckedBtn = $('.submit-all-checked-btn')
+
+    // handle checkboxAll
+    checkBoxAll.change(function() {
+      const isCheckedAll = $(this).prop("checked")
+      courseItemCheckbox.prop("checked", isCheckedAll)
+      renderSubmitAllCheckedBtn()
     })
+
+    // handle course item checkbox clicked
+    courseItemCheckbox.change(function() {
+      if (courseItemCheckbox.length === $('input[name = "courseIds[]"]:checked').length) {
+        checkBoxAll.prop("checked", true)
+      } else {
+        checkBoxAll.prop("checked", false)
+      }
+      renderSubmitAllCheckedBtn()
+    })
+
+    //render submit-all-checked-btn
+    function renderSubmitAllCheckedBtn() {
+      if ($('input[name = "courseIds[]"]:checked').length > 0) {
+        submitAllCheckedBtn.removeClass('disabled')
+      } else {
+        submitAllCheckedBtn.addClass('disabled')
+      }
+    }
+
   }
 
   function start() {
     handleDelete()
     handleRestore()
+    handleCheckBox()
   }
 
   start()
+
+  })
+
 </script>
 
 
