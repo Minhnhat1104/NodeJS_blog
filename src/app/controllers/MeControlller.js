@@ -4,7 +4,13 @@ const { multipleMongooseToObject } = require('../../util/moongose');
 class MeController {
   // [GET] /me/stored/courses
   storedCourses(req, res, next) {
-    Promise.all([Course.countDocumentsDeleted(), Course.find({})])
+    const coursesQuery = Course.find({});
+
+    if (req.query.hasOwnProperty('_sort')) {
+      coursesQuery.sort({ [req.query.column]: req.query.type });
+    }
+
+    Promise.all([Course.countDocumentsDeleted(), coursesQuery])
       .then(([number, courses]) => {
         res.render('me/stored-courses', {
           number,

@@ -2,9 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const mongooseDelete = require('mongoose-delete');
 const slug = require('mongoose-slug-generator');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const Course = new Schema(
   {
+    _id: { type: Number },
     name: { type: String, required: true },
     description: { type: String },
     image: { type: String },
@@ -13,6 +15,7 @@ const Course = new Schema(
     slug: { type: String, slug: 'name', unique: true },
   },
   {
+    _id: false,
     timestamps: true,
   },
 );
@@ -24,6 +27,8 @@ Course.plugin(mongooseDelete, {
   overrideMethods: 'all',
   deletedAt: true,
 });
+
+Course.plugin(AutoIncrement);
 
 // mogo tự động convert thành dạng snaking
 module.exports = mongoose.model('Course', Course);

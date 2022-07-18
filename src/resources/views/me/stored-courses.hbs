@@ -21,11 +21,22 @@
   <table class="table table-striped mt-4">
     <thead>
       <tr>
-        <th scope="col"></th>
-        <th scope="col">id</th>
-        <th scope="col">name</th>
-        <th scope="col">description</th>
-        <th scope="col" colspan="2">createdAt</th>
+        <th scope="col" colspan="2">
+          id
+          {{{sortable "_id" _sort}}}
+          </th>
+        <th scope="col">
+          name
+          {{{sortable "name" _sort}}}
+        </th>
+        <th scope="col">
+          description
+          {{{sortable "description" _sort}}}
+        </th>
+        <th scope="col" colspan="2">
+          createdAt
+          {{{sortable "createdAt" _sort}}}  
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -68,19 +79,18 @@
   </table>
 </form>
 
-<form id = "hidden-form" method="POST" ></form>
+<form name = "hidden-form" method="POST" ></form>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const deleteCourseModal = document.getElementById('delete-course')
-    const modal = document.forms['#delete-course']
-    const hiddenForm = document.forms['#hidden-form']
+    const hiddenForm = document.forms['hidden-form']
     const containerForm = $('.container-form')
     const deleteCourseBtn = $('#btn-delete-course')
     const courseItemCheckbox = $('input[name = "courseIds[]"]')
     const checkBoxAll = $('#check-box-all')
     const submitAllCheckedBtn = $('.submit-all-checked-btn')
-    const courseID = ""
+    let courseID = ""
     // handle delete course modal
     if (deleteCourseModal) {
       deleteCourseModal.addEventListener('show.bs.modal', event => {
@@ -90,10 +100,11 @@
     }
 
     // when delete course btn clicked
-    deleteCourseBtn.onclick = () => {
+    deleteCourseBtn.click(function() {
+      console.log()
       hiddenForm.action = `/courses/${courseID}?_method=DELETE`
       hiddenForm.submit()
-    }
+    })
 
     // handle checkboxAll
     checkBoxAll.change(function() {

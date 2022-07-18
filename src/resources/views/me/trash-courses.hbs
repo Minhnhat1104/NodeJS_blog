@@ -22,8 +22,7 @@
   <table class="table mt-4">
     <thead>
       <tr>
-        <th scope="col"></th>
-        <th scope="col">id</th>
+        <th scope="col" colspan="2">id</th>
         <th scope="col">name</th>
         <th scope="col">description</th>
         <th scope="col" colspan="2">createdAt</th>
@@ -70,8 +69,8 @@
   </table>
 </form>
 
-<form id = "hidden-form" method="POST" ></form>
-<form id = "restore-form" method="POST" ></form>
+<form name = "hidden-form" method="POST" ></form>
+<form name = "restore-form" method="POST" ></form>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -82,7 +81,7 @@
       deleteCourseModal.addEventListener('show.bs.modal', event => {
       const deleteButton = event.relatedTarget
       const modal = $('#delete-course')
-      const hiddenForm = $('#hidden-form')
+      const hiddenForm = document.forms['hidden-form']
 
       // Extract info from data-id attributes
       const courseID = deleteButton.getAttribute('data-id')
@@ -98,7 +97,7 @@
 
   function handleRestore() {
     const restoreBtns = $('.restore-btn')
-    const restoreForm = $('#restore-form')
+    const restoreForm = document.forms['restore-form']
     restoreBtns.click(function() {
         event.preventDefault()
         const id = $(this).attr('data-id')
