@@ -1,2 +1,8 @@
 node_modules/
-src/public/vendors
+src/public/vendors/fontawesome-free-6.1.1-web/js
+src/public/vendors/fontawesome-free-6.1.1-web/less
+src/public/vendors/fontawesome-free-6.1.1-web/metadata
+src/public/vendors/fontawesome-free-6.1.1-web/scss
+src/public/vendors/fontawesome-free-6.1.1-web/sprites
+src/public/vendors/fontawesome-free-6.1.1-web/svgs
+src/public/vendors/fontawesome-free-6.1.1-web/webfonts
