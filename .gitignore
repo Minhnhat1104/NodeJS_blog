@@ -1,4 +1,5 @@
 node_modules/
+.vscode/
 src/public/vendors/fontawesome-free-6.1.1-web/js
 src/public/vendors/fontawesome-free-6.1.1-web/less
 src/public/vendors/fontawesome-free-6.1.1-web/metadata

@@ -1,20 +1,39 @@
-<div class="mt-4">
-    <div class="row">
+<div class="mt-4 mb-4">
+  <div class="row">
     {{#each courses}}
-        <div class="col-xs-12 col-sm-6 col-lg-3">
-            <div class="card-course-item card" style="width: 18rem;">
-                <a href="/courses/{{this.slug}}">
-                    <img src="{{this.image}}" class="card-img-top" alt="...">
-                </a>
-                <div class="card-body">
-                    <a href="/courses/{{this.slug}}">
-                        <h5 class="card-title">{{this.name}}</h5>
-                    </a>
-                    <p class="card-text">{{this.description}}</p>
-                    <a href="#" class="btn btn-primary">Learn!!</a>
-                </div>
-            </div>
+      <div class="col-xs-12 col-sm-6 col-lg-3">
+        <div class="card-course-item card" style="width: 18rem;">
+          {{!-- <a href="/courses/{{this.slug}}"> --}}
+            <img
+              src="{{this.image}}"
+              class="card-img-top"
+              alt="..."
+            />
+          {{!-- </a> --}}
+          <div class="card-body">
+            <a href="/courses/{{this.slug}}">
+              <h5 class="card-title">{{this.name}}</h5>
+            </a>
+            <p class="card-text">{{this.description}}</p>
+            <a href="/courses/{{this.slug}}" class="btn btn-primary">Learn!!</a>
+          </div>
         </div>
+      </div>
     {{/each}}
-    </div>
+  </div>
 </div>
+
+<script>
+  const $ = document.querySelector.bind(document); 
+  const $$ = document.querySelectorAll.bind(document); 
+  const cardImgs = $$('.card-img-top');
+
+Array.from(cardImgs).forEach(v => {
+  v.setAttribute("onerror", () => handleCourseImageError(v))
+})
+
+function handleCourseImageError(image) {
+  image.setAttribute('src', '/img/courses_placeholder.png')
+}
+
+</script>

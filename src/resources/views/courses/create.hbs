@@ -1,22 +1,37 @@
 <div class="mt-4">
-    <h3>Đăng khóa học</h3>
-    <form method="POST" action="/courses/store">
-        <div class="form-group">
-            <label for="name" class="form-label">Tên khóa học</label>
-            <input type="text" class="form-control" id="name" name="name">
-        </div>
-        <div class="form-group">
-            <label for="description" class="form-label">Mô tả</label>
-            <input type="text" class="form-control" id="description" name="description">
-        </div>
-        <div class="form-group">
-            <label for="videoid" class="form-label">Video ID</label>
-            <input type="text" class="form-control" id="videoid" name="videoid">
-        </div>
-        <div class="form-group">
+  <h3>Đăng khóa học</h3>
+  <form method="POST" action="/courses/store">
+    <div class="form-group">
+      <label for="name" class="form-label">Tên khóa học</label>
+      <input type="text" class="form-control" id="name" name="name" />
+    </div>
+    <div class="form-group">
+      <label for="description" class="form-label">Mô tả</label>
+      <input
+        type="text"
+        class="form-control"
+        id="description"
+        name="description"
+      />
+    </div>
+    <div class="form-group">
+      <label for="videoid" class="form-label">Video ID</label>
+      <input type="text" class="form-control" id="videoid" name="videoid" />
+    </div>
+    {{! <div class="form-group">
             <label for="level" class="form-label">Trình độ</label>
             <input type="text" class="form-control" id="level" name="level">
-        </div>
-        <button type="submit" class="btn btn-primary mt-4">Thêm khóa học</button>
-    </form>
+        </div> }}
+    <div class="form-group">
+      <label for="level" class="form-label">Trình độ</label>
+      <select class="form-select" aria-label="Default select example">
+        <option selected value="Very Easy">Very Easy</option>
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+        <option value="Very hard">Very hard</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary mt-4">Thêm khóa học</button>
+  </form>
 </div>

@@ -14,7 +14,10 @@ class MeController {
       .then(([number, courses]) => {
         res.render('me/stored-courses', {
           number,
-          courses: multipleMongooseToObject(courses),
+          courses: multipleMongooseToObject(courses).map((v) => ({
+            ...v,
+            createdAt: new Date(v?.createdAt).toDateString(),
+          })),
         });
       })
       .catch(next);
@@ -25,7 +28,10 @@ class MeController {
     Course.findDeleted({})
       .then((courses) =>
         res.render('me/trash-courses', {
-          courses: multipleMongooseToObject(courses),
+          courses: multipleMongooseToObject(courses).map((v) => ({
+            ...v,
+            createdAt: new Date(v?.createdAt).toDateString(),
+          })),
         }),
       )
       .catch(next);

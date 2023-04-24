@@ -1,4 +1,8 @@
 @import 'variables';
+.app {
+  position: relative;
+}
+
 .card-course-item {
   margin-top: 16px;
   margin-left: auto;
@@ -13,6 +17,24 @@
   margin-right: 4px;
 }
 
+.card-title {
+  color: var(--white-color);
+  height: 50px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.card-text {
+  color: var(--white-color);
+  height: 70px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
 [href] {
   text-decoration: none;
 }
@@ -20,4 +42,11 @@
 .checkbox-select-all-options {
   width: 160px;
   margin: 0 8px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
